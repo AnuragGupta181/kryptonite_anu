@@ -1,0 +1,4 @@
+# Schema definitions
+columns:
+  - name: column1
+    type: int

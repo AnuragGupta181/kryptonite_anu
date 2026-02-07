@@ -1,0 +1,41 @@
+version: "3.8"
+
+services:
+  kryptonite-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: kryptonite-fire-detector
+    ports:
+      - "8002:8002"
+    environment:
+      # Override environment variables here if needed
+      - PYTHONUNBUFFERED=1
+    env_file:
+      - .env
+    volumes:
+      # Mount logs directory for persistent logging
+      - ./logs:/app/logs
+      # Mount artifact directory for persistent artifacts
+      - ./artifact:/app/artifact
+      # Mount config directory for easy configuration updates
+      - ./config:/app/config:ro
+    restart: unless-stopped
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import requests; requests.get('http://localhost:8002/api/user/', timeout=5)",
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    networks:
+      - kryptonite-network
+
+networks:
+  kryptonite-network:
+    driver: bridge
