@@ -90,7 +90,6 @@ uv.lock
 # ML Models
 *.pkl
 *.h5
-*.pt
 *.pth
 *.onnx
 *.pb
