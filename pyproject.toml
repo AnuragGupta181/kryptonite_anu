@@ -15,5 +15,6 @@ dependencies = [
     "python-multipart>=0.0.22",
     "scikit-learn>=1.8.0",
     "ultralytics>=8.4.12",
-    "uvicorn>=0.40.0",
+    "uvicorn[standard]>=0.40.0",
+    "websockets>=16.0",
 ]

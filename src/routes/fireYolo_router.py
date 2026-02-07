@@ -59,7 +59,7 @@ async def draw_yolo_boxes(file: UploadFile):
     shutil.rmtree(os.path.dirname(output_image_path), ignore_errors=True)
 
     encoded_image = base64.b64encode(image_bytes).decode("utf-8")
-    save_path = f"public/saved_{file.filename}"  # e.g., public/saved_input.jpg
+    save_path = f"public/saved_test"  # e.g., public/saved_input.jpg
     with open(save_path, "wb") as f:
         f.write(base64.b64decode(encoded_image))
     return {"data": encoded_image}

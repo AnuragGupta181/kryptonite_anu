@@ -6,7 +6,7 @@ import dill
 from dataclasses import asdict
 import numpy as np
 import os
-
+import shutil
 async def read_yaml_file(file_path:str)->dict:
     try:
         with open(file_path,"rb") as f:
@@ -79,3 +79,11 @@ async def load_object(file_path: str) -> object:
         return obj
     except Exception as e:
         raise MyException(e, sys) from e    
+    
+
+def delete_folders():
+    try:
+        shutil.rmtree("artifact",ignore_errors=True)
+        shutil.rmtree("logs",ignore_errors=True)
+    except Exception as e:
+        raise MyException(e,sys)    
