@@ -11,6 +11,7 @@ import requests
 # import folium
 from ultralytics import YOLO
 from pathlib import Path
+from src.utils.main_utils import delete_folders
 
 
 
@@ -36,6 +37,7 @@ async def draw_boxes(image_path, save_dir="outputs"):
     return str(images[0])
 @router.post("/draw_boxes_fire")
 async def draw_yolo_boxes(file: UploadFile):
+    delete_folders()
     os.makedirs("public", exist_ok=True)
 
     if not file:
